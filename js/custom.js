@@ -4,7 +4,7 @@ function handleDialog() {
 }
 function closefun() {
     let x = document.getElementById("dialog");
-    x.removeAttribute('open', true)
+    x.removeAttribute('open', true);
 }
 function submit() {
     let apendsection = document.createElement("div");
