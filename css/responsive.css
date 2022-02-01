@@ -1,0 +1,35 @@
+/* Large Desktop*/
+@media (max-width: 1300px) {
+
+}
+/* portrait tablet to ladscape  */
+@media (min-width: 768px) and (max-width: 991px) {
+	
+}
+@media (max-width: 1199px) {
+	
+}
+/* portrait tablet to ladscape  */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Portrait Phone  */
+@media (max-width: 991px) {
+}
+@media screen and (max-width:479px){
+	.portfolio-item{grid-template-rows: repeat(1, 1fr);grid-template-columns: repeat(1, 1fr);}
+	.portfolio-item.medium{	grid-row: span 2;grid-column: span 1;}
+	.portfolio-item.large {grid-row: span 2;grid-column: span 1;}
+	.portfolio-item.small {grid-row: span 2;grid-column:1 / span 2;}
+	.portfolio-item.tall {grid-row: span 2;grid-column: span 1;}
+	.portfolio-item.wide {grid-row: span 2;grid-column: span 3;}
+
+
+@media screen and (max-width:800px){
+
+}
+
+@media screen and (max-width:600px){
+
+}

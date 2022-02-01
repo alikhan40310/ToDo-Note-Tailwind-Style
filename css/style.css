@@ -1,0 +1,16 @@
+body{
+	font-size: 15px;
+	color: #000;
+	background-color: #fff;
+	/*google fonts*/
+	font-family: 'Nunito Sans', sans-serif;
+}
+.clear{clear: both;}
+.btn_style{
+	font-size: 20px;
+}
+.newStyle{
+	position: fixed;
+	bottom: 10%;
+	right: 10%;
+}
