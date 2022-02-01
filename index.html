@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ToDo Notes</title>
+    <title>ToDo Notes tailWind</title>
     <!-- CSS File attachment -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
@@ -14,65 +14,51 @@
     <link rel="icon" type="image/jpg" href="image/avatar.png">
     <!-- google font attachment -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- bootstrap attachment -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <!-- TailWind attachment -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body> 
+  <div class="absolute">
+      fdffdfd
+  </div>
  <div class="container">
      <div class="newStyle">
-        <button type="button" class="rounded-circle btn_style fs-4 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">+</button>
+        <button type="button" onclick="dialogfun()" class="bg-blue-500 rounded-full text-white text-4xl w-14 h-14 ">+</button>
      </div>
-     <!-- modal of bootstrap -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Note</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <input type="text" class="form-control" id="recipient-name" placeholder="Title">
-                </div>
-                <div class="mb-3">
-                  <textarea class="form-control" id="message-text" placeholder="Description."></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Select Color</label>
-                    <input type="color" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Select Color</label>
-                    <input type="date" class="form-control" id="recipient-name">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </div>
-      </div>
+     
  </div>
- <!-- column section -->
- <section>
-     <div class="container">
-         <div class="content">
-            <div class="row">
-                <div class="col-md-4">
-                    dsfljkkjfdh
-                </div>
-                
+ <!-- dialog box -->
+ <dialog id="dialog" class="absolute transiton ease-in delay-400 active:animate-pulse w-full bg-gray-800/30 h-screen">
+  <div class="container mx-auto flex justify-center w-1/4">
+      <div class="p-6 bg-white mt-20 w-full rounded-xl rounded-xl">
+        <div class="flex items-end justify-end">
+          <button id="close" onclick="closefun()" class="">
+            <div class="relative flex items-center w-6 h-6 justify-center rounded-full bg-gray-200">
+              <i class="fas text-sm text-gray-400 font-normal fa-times justify-end"></i>
             </div>
-         </div>
-     </div>
- </section>
+          </button>
+        </div>
+          <h2 class="mt-2 text-gray-800 text-2xl mb-6">Add Note</h2>
+          <form action="">
+            <input type="text" placeholder="Title" required class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400">
+            <textarea class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400 resize-none mt-4" minlength="50" maxlength="100" required placeholder="Description"></textarea>
+            <div class="flex flex-row">
+              <label class="mt-6 mr-6 text-lg">Color</label>
+              <input type="color" class="border-2 border-gray-300 w-1/4 p-4 focus:outline-none rounded text-xl text-gray-400 resize-none mt-4 ">
+            </div>
+            <input type="date" placeholder="Title" required class="mt-6 border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400">
+            
+            <button type="submit" class="mt-4 px-8 py-2 rounded bg-blue-500 w-full text-xl text-white">submit</button>
+          </form>
+      </div>
+  </div>    
+</dialog>
+
+
+
+ <!-- column section -->
+
     <!-- jquery attachment -->
     <script type="text/javascript" src="js/fontawesome.min.js"></script>
     <script type="text/javascript" src="js/all.js"></script>
