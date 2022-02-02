@@ -23,19 +23,19 @@ function submit() {
     let indate = document.getElementById("inpdate").value;
     let incolor = document.getElementById("colorpic").value;
     // inner html of inputBox
-    title.innerHTML = intitle;
-    description.innerHTML = indescription;
-    date.innerHTML = indate;
+    title.innerHTML ="<b>Title:" + intitle;
+    description.innerHTML ="<b>Description: </b>" + indescription;
+    date.innerHTML = "<b> Date: </b>" + indate;
     apendsection.style.backgroundColor = incolor;
     // styling on appendDiv
-    apendsection.style.padding = "10px";
+    apendsection.style.padding = "20px 20px";
     apendsection.style.borderRadius = "8px";
     apendsection.style.fontSize = "18px";
-    title.style.fontSize = "24px";
-    title.style.fontWeight = "500";
+    title.style.fontSize = "20px";
+    description.style.fontSize = "20px";
+    date.style.fontSize = "20px";
     title.style.textTransform = "capitalize";
     description.style.textTransform = "capitalize";
-    description.style.fontSize = "16px";
     // appending button
     let buttonDiv = document.createElement("div");
     let deletebtn = document.createElement("button");
@@ -45,7 +45,7 @@ function submit() {
     buttonDiv.appendChild(deletebtn); 
     buttonDiv.appendChild(editbtn); 
     apendsection.appendChild(buttonDiv);
-    // creating id for custom styling external
+    // creating classes for custom styling external
     deletebtn.className ="deletestyle";
     editbtn.className ="editstyle";
     // styling of edit & delete button
@@ -62,9 +62,19 @@ function submit() {
     editbtn.style.color = "#fff";
     editbtn.style.textTransform = "capitalize";
 
-
-
-
-
+    // delete item on click
+    let ranValue = Math.random() * 100;
+    apendsection.id = "uniqueId" + ranValue;
+    // calling delete function on click
+    deletebtn.onclick = function() {
+        deletes("uniqueId" + ranValue);
+    };
     
+
+}
+
+// delete global function
+function deletes(id) {
+    var y = document.getElementById(id);
+    y.remove();
 }
