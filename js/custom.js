@@ -10,7 +10,7 @@ function closefun() {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
 }
-// globally local random ID
+// globally local random ID variable declaration
 let a;
 let b;
 let c;
@@ -50,8 +50,6 @@ function submitFunc() {
     title.id = "titleId" + ranValue;
     date.id = "dateId" + ranValue;
     description.id = "desId" + ranValue;
-    // random ID of different field
-    
     // styling on appendDiv
     apendsection.style.padding = "20px 20px";
     apendsection.style.borderRadius = "8px";
