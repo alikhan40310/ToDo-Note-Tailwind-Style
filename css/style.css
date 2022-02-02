@@ -17,3 +17,16 @@ body{
 #apendDiv{
 	padding: 20px;
 }
+.deletestyle{
+	margin-right: 10px;
+}
+.deletestyle:hover{
+	transition: all 0.5s ease;
+	background-color: rgb(52, 145, 233);
+	border-color: rgb(52, 145, 233);
+}
+.editstyle:hover{
+	transition: all 0.5s ease;
+	background-color: rgb(52, 145, 233);
+	border-color: rgb(52, 145, 233);
+}

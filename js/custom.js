@@ -36,8 +36,31 @@ function submit() {
     title.style.textTransform = "capitalize";
     description.style.textTransform = "capitalize";
     description.style.fontSize = "16px";
-
-
+    // appending button
+    let buttonDiv = document.createElement("div");
+    let deletebtn = document.createElement("button");
+    deletebtn.innerHTML = "delete";
+    let editbtn = document.createElement("button");
+    editbtn.innerHTML = "edit";
+    buttonDiv.appendChild(deletebtn); 
+    buttonDiv.appendChild(editbtn); 
+    apendsection.appendChild(buttonDiv);
+    // creating id for custom styling external
+    deletebtn.className ="deletestyle";
+    editbtn.className ="editstyle";
+    // styling of edit & delete button
+    buttonDiv.style.float="right";
+    deletebtn.style.transition="0.5s ease";
+    deletebtn.style.padding = "5px 12px";
+    deletebtn.style.borderRadius = "8px";
+    deletebtn.style.color = "#fff";
+    deletebtn.style.textTransform = "capitalize";
+    editbtn.style.float="right";
+    editbtn.style.transition="0.5s ease";
+    editbtn.style.padding = "5px 12px";
+    editbtn.style.borderRadius = "8px";
+    editbtn.style.color = "#fff";
+    editbtn.style.textTransform = "capitalize";
 
 
 
