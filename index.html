@@ -39,13 +39,13 @@
           <h2 class="mt-2 text-gray-800 text-2xl mb-6">Add Note</h2>
           <form name="myForm" action="" onsubmit="func(event)">
             <label for="">text</label>
-            <input name="inptitle" id="inptitle" type="text" placeholder="Title" required class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400">
-            <textarea id="description" class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400 resize-none mt-4" minlength="" maxlength="60" required placeholder="Description"></textarea>
+            <input name="inptitle" id="inptitle" type="text" placeholder="Title" required class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded-lg text-xl text-gray-400">
+            <textarea id="description" class="border-2 border-gray-300 w-full p-4 focus:outline-none rounded-lg text-xl text-gray-400 resize-none mt-4" minlength="" maxlength="60" required placeholder="Description"></textarea>
             <div class="flex flex-row">
-              <label class="mt-6 mr-6 text-lg">Color</label>
+              <label class="mt-6 mr-6 text-lg text-gray-800">Color</label>
               <input id="colorpic" type="color" class="border-2 border-gray-300 w-1/4 p-4 focus:outline-none rounded text-xl text-gray-400 mt-5 ">
             </div>
-            <input id="inpdate" type="date" placeholder="Title" required class="mt-6 border-2 border-gray-300 w-full p-4 focus:outline-none rounded text-xl text-gray-400">
+            <input id="inpdate" type="date" placeholder="Title" required class="mt-6 border-2 border-gray-300 w-full p-4 focus:outline-none rounded-lg text-xl text-gray-400">
             <button id="submitbtn" type="submit" onclick="submitFunc()" class="mt-4 px-8 py-2 rounded bg-blue-500 w-full text-xl text-white">submit</button>
             <button id="updatebtn" type="submit" onclick="updateFunc()" class=" mt-4 px-8 py-2 rounded bg-blue-500 w-full text-xl text-white">Update</button>
           </form>

@@ -14,6 +14,7 @@ function closefun() {
 let a;
 let b;
 let c;
+let d;
 function submitFunc() {
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
@@ -77,7 +78,8 @@ function submitFunc() {
     apendsection.appendChild(buttonDiv);
     // creating classes for custom styling external
     deletebtn.className ="deletestyle";
-    editbtn.className ="editstyle";
+    editbtn.className = "editstyle";
+    apendsection.className="divstyle";
     // styling of edit & delete button
     buttonDiv.style.float="right";
     deletebtn.style.transition="0.5s ease";
@@ -99,7 +101,7 @@ function submitFunc() {
     };
     // edit functionality
     editbtn.onclick = function() {
-        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue );
+        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, "uniqueId" + ranValue);
     };
     // empty dialogbox on load
     document.getElementById("inptitle").innerHTML = "";
@@ -112,30 +114,36 @@ function deletes(id) {
     y.remove();
 }
 // global edit function
-function editvalue(id1, id2, id3) {
+function editvalue(id1, id2, id3, id4) {
     let x = document.getElementById("dialog");
     x.setAttribute('open', true);
     let oper1 = document.getElementById(id1);
     let oper2 = document.getElementById(id2);
     let oper3 = document.getElementById(id3);
+    let oper4 = document.getElementById(id4).style.backgroundColor;
     document.getElementById("inptitle").value = oper1.innerHTML;
     document.getElementById("description").value = oper2.innerHTML;
     document.getElementById("inpdate").value = oper3.innerHTML;
-    document.getElementById("updatebtn").style.display = "inline-block";
-    document.getElementById("submitbtn").style.display = "none";
+    document.getElementById("colorpic").value = oper4;
+  
     // assigning ID to other variable
     a=id1;
     b=id2;
     c=id3;
+    d=id4;
+    document.getElementById("updatebtn").style.display = "block";
+    document.getElementById("submitbtn").style.display = "none";
 }
 // globally update function
 function updateFunc(){
     let title= document.getElementById("inptitle").value;
     let description= document.getElementById("description").value;
     let date= document.getElementById("inpdate").value;
+    let color=document.getElementById("colorpic").value;
     document.getElementById(a).innerHTML= title;
     document.getElementById(b).innerHTML= description ;
     document.getElementById(c).innerHTML = date;
+    document.getElementById(d).style.backgroundColor=color;
     document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
 }
