@@ -10,6 +10,7 @@ function closefun() {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
 }
+// globally local random ID
 let a;
 let b;
 let c;
@@ -49,11 +50,8 @@ function submitFunc() {
     title.id = "titleId" + ranValue;
     date.id = "dateId" + ranValue;
     description.id = "desId" + ranValue;
-    a=title.id;
-    b=date.id;
-    c=description.id;
-        console.log(a, b, c)
-
+    // random ID of different field
+    
     // styling on appendDiv
     apendsection.style.padding = "20px 20px";
     apendsection.style.borderRadius = "8px";
@@ -110,7 +108,6 @@ function submitFunc() {
     document.getElementById("description").innerHTML = "";
     document.getElementById("inpdate").innerHTML = "";
 }
-
 // delete global function
 function deletes(id) {
     var y = document.getElementById(id);
@@ -128,18 +125,19 @@ function editvalue(id1, id2, id3) {
     document.getElementById("inpdate").value = oper3.innerHTML;
     document.getElementById("updatebtn").style.display = "inline-block";
     document.getElementById("submitbtn").style.display = "none";
-
+    // assigning ID to other variable
+    a=id1;
+    b=id2;
+    c=id3;
 }
 // globally update function
-
 function updateFunc(){
-    console.log(a, b, c)
     let title= document.getElementById("inptitle").value;
     let description= document.getElementById("description").value;
     let date= document.getElementById("inpdate").value;
     document.getElementById(a).innerHTML= title;
     document.getElementById(b).innerHTML= description ;
     document.getElementById(c).innerHTML = date;
-    document.getElementById("updatebtn").style.display = "block";
+    document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
 }
