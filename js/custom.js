@@ -15,6 +15,9 @@ let a;
 let b;
 let c;
 let d;
+// globally array
+
+let array = [];
 function submitFunc() {
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
@@ -107,6 +110,14 @@ function submitFunc() {
     document.getElementById("inptitle").innerHTML = "";
     document.getElementById("description").innerHTML = "";
     document.getElementById("inpdate").innerHTML = "";
+
+    let x = document.getElementById("dialog");
+    x.removeAttribute('open', true);
+    // pushing element in array
+    let obj = {title:intitle,dec:indescription};
+    array.push(obj);
+    console.log(array);
+
 }
 // delete global function
 function deletes(id) {
@@ -146,4 +157,28 @@ function updateFunc(){
     document.getElementById(d).style.backgroundColor=color;
     document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
+}
+
+// globally array of appenDiv
+
+
+// globally search function
+function searchfunc(){
+    let inputvalue = document.getElementById("inpsearch").value;
+    // let result = document.getElementById("apendDiv");
+    let array2 = array.filter(function(value){
+      if(value.title.includes(inputvalue)){
+        return true;
+      }
+      else if(value.dec.includes(inputvalue)){
+          return true;
+      }
+      else{
+        return false;
+      }
+    });
+    console.log(array2);
+    for (let i=0; i<array2.length; i++) {
+        
+    }
 }
