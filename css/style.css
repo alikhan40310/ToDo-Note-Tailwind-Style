@@ -31,7 +31,7 @@ body{
 	border-color: rgb(52, 145, 233);
 }
 
-
+/* dialog style */
 dialog {
 	background:linear-gradient(45deg, rgba(0,143,104,.5), rgba(250,224,66,.5));
 	color: white;
@@ -50,12 +50,7 @@ dialog {
   dialog::backdrop {
 	background: linear-gradient(45deg, rgba(0,143,104,.5), rgba(250,224,66,.5));
   }
-  
-  dialog .actions {
-	display: flex;
-	justify-content: space-around;
-  }
-  
+
   @keyframes appear {
 	from {
 	  opacity: 0;
