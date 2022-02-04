@@ -2,6 +2,19 @@ document.getElementById("updatebtn").style.display = "none";
 function func(event) {
     event.preventDefault();
 }
+
+function validateForm() {
+    let title = document.getElementById("inptitle").value;
+    let description = document.getElementById("description").value;
+    let date = document.getElementById("inpdate").value;
+    if (title == "" || description == "" || date == "") {
+        alert("Please fill the form");
+        return false;
+    }
+    else {
+        submitFunc();
+    }
+}
 function handleDialog() {
     let x = document.getElementById("dialog");
     x.setAttribute('open', true);
@@ -18,10 +31,12 @@ let d;
 // globally array
 let array = [];
 // globally get local storage
+debugger;
 const existingUserInfoData = JSON.parse(localStorage.getItem("userInfoData"));
 if (existingUserInfoData !== null) {
     array = existingUserInfoData;
 }
+console.log("array", array);
 for(let i = 0; i<array.length; i++) {
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
@@ -52,7 +67,7 @@ for(let i = 0; i<array.length; i++) {
     label3.innerHTML = "Date:";
     date.innerHTML = array[i].date;
     apendsection.style.backgroundColor = array[i].col;
-    apendsection.style.backgroundImage = `linear-gradient(20deg,${incolor}, yellow`;
+    apendsection.style.backgroundImage = `linear-gradient(20deg,${array[i].col}, yellow`;
     // random ID generate
     let ranValue = Math.random() * 100;
     // assigning ID of different field
@@ -102,14 +117,14 @@ for(let i = 0; i<array.length; i++) {
     editbtn.style.color = "#fff";
     editbtn.style.textTransform = "capitalize";
     // delete item on click
-    apendsection.id = "uniqueId" + ranValue;
+    apendsection.id = ranValue;
     // calling delete function on click
     deletebtn.onclick = function () {
-        deletes("uniqueId" + ranValue);
+        deletes(ranValue);
     };
     // edit functionality
     editbtn.onclick = function () {
-        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, "uniqueId" + ranValue);
+        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
     };
     // empty dialogbox on load
     document.getElementById("inptitle").value = "";
@@ -119,6 +134,8 @@ for(let i = 0; i<array.length; i++) {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
 }
+
+    
 function submitFunc() {
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
@@ -135,12 +152,13 @@ function submitFunc() {
     apendsection.appendChild(label2);
     apendsection.appendChild(description);
     apendsection.appendChild(label3);
-    apendsection.appendChild(date);
+    apendsection.appendChild(date);    
     // creating variable of required inputBox
     let intitle = document.getElementById("inptitle").value;
     let indescription = document.getElementById("description").value;
     let indate = document.getElementById("inpdate").value;
     let incolor = document.getElementById("colorpic").value;
+    
     // inner html of inputBox
     label1.innerHTML = "Title: ";
     title.innerHTML = intitle;
@@ -150,12 +168,17 @@ function submitFunc() {
     date.innerHTML = indate;
     apendsection.style.backgroundColor = incolor;
     apendsection.style.backgroundImage = `linear-gradient(20deg,${incolor}, yellow)`;
+
+    
     // random ID generate
     let ranValue = Math.random() * 100;
     // assigning ID of different field
     title.id = "titleId" + ranValue;
     date.id = "dateId" + ranValue;
     description.id = "desId" + ranValue;
+    // console
+    console.log("on submit random value", ranValue);
+   
     // styling on appendDiv
     apendsection.style.padding = "20px 20px";
     apendsection.style.borderRadius = "8px";
@@ -199,48 +222,56 @@ function submitFunc() {
     editbtn.style.color = "#fff";
     editbtn.style.textTransform = "capitalize";
     // delete item on click
-    apendsection.id = "uniqueId" + ranValue;
+    apendsection.id = ranValue;
     // calling delete function on click
     deletebtn.onclick = function () {
-        deletes("uniqueId" + ranValue);
+        deletes(ranValue);
+        console.log("in delete function ranvalue",ranValue)
     };
     // edit functionality
     editbtn.onclick = function () {
-        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, "uniqueId" + ranValue);
+        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
     };
     // empty dialogbox on load
     document.getElementById("inptitle").value = "";
     document.getElementById("description").value = "";
     document.getElementById("inpdate").value = "";
-    // dialog box remove attribute
-    let x = document.getElementById("dialog");
-    x.removeAttribute('open', true);
+   
     // pushing element in array as a object
     let obj = { title: intitle, dec: indescription,col: incolor,date:indate, id:ranValue };
-    array.push(obj);
-    console.log(array);
-
+    
    // storing data in local storage
-    localStorage.setItem("userInfoData", JSON.stringify(array));
-    const infoData = JSON.parse(localStorage.getItem("userInfoData"));
-    console.log("storage result", infoData);
-    console.log(infoData);
-    for(let i=0; i<infoData.length;i++){
-        
+    let existingData = JSON.parse(localStorage.getItem("userInfoData"));
+    console.log("existingData storage result", existingData);
+    console.log(existingData);
+    if (existingData === null) {
+        existingData = [];
     }
+    existingData.push(obj);
+    console.log({existingData});
+    localStorage.setItem("userInfoData", JSON.stringify(existingData));
+
+    // dialog box remove attribute
+    // let x = document.getElementById("dialog");
+    // x.removeAttribute('open', true);
+    
+   
 }
-// create a program to delete array item from local storage
+// create a simple program that validate the form
 // delete global function
 function deletes(id) {
     var y = document.getElementById(id);
     y.remove();
     // local storage delete data from array
-    let infoData = JSON.parse(localStorage.getItem("userInfoData"));
+    const infoData = JSON.parse(localStorage.getItem("userInfoData"));
     let deleteItem = infoData.findIndex(function (value) {
+        console.log("value id",value.id);
+        console.log("simple id",id);
         return value.id === id;
     });
-    infoData.splice(deleteItem, 1);
-    localStorage.setItem("userInfoData", JSON.stringify(infoData));
+    // infoData.splice(deleteItem, 1);
+    // localStorage.setItem("userInfoData", JSON.stringify(infoData));
+
 }
 // global edit function
 function editvalue(id1, id2, id3, id4) {
@@ -262,7 +293,6 @@ function editvalue(id1, id2, id3, id4) {
     document.getElementById("updatebtn").style.display = "block";
     document.getElementById("submitbtn").style.display = "none";
 }
-
 // globally update function
 function updateFunc() {
     let title = document.getElementById("inptitle").value;
@@ -273,9 +303,10 @@ function updateFunc() {
     document.getElementById(b).innerHTML = description;
     document.getElementById(c).innerHTML = date;
     document.getElementById(d).style.backgroundColor = color;
+    document.getElementById(d).style.backgroundImage = `linear-gradient(20deg,${color}, yellow)`;
+
     document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
-
      // dialog box remove attribute
      let x = document.getElementById("dialog");
      x.removeAttribute('open', true);
@@ -325,7 +356,7 @@ function searchfunc() {
         label3.innerHTML = "Date:";
         date.innerHTML = array2[i].date;
         apendsection.style.backgroundColor = array2[i].col;
-        apendsection.style.backgroundImage = `linear-gradient(20deg,${incolor}, yellow`;
+        apendsection.style.backgroundImage = `linear-gradient(20deg,${array2[i].col}, yellow`;
         // random ID generate
         let ranValue = Math.random() * 100;
         // assigning ID of different field
@@ -375,14 +406,14 @@ function searchfunc() {
         editbtn.style.color = "#fff";
         editbtn.style.textTransform = "capitalize";
         // delete item on click
-        apendsection.id = "uniqueId" + ranValue;
+        apendsection.id = ranValue;
         // calling delete function on click
         deletebtn.onclick = function () {
-            deletes("uniqueId" + ranValue);
+            deletes(ranValue);
         };
         // edit functionality
         editbtn.onclick = function () {
-            editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, "uniqueId" + ranValue);
+            editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
         };
         // empty dialogbox on load
         document.getElementById("inptitle").value = "";
@@ -392,9 +423,29 @@ function searchfunc() {
         let x = document.getElementById("dialog");
         x.removeAttribute('open', true);
     }
-
 }
-// create a program that delete stored array data from local storage
 
-// create program to update data in local storage
-// create a program to append data in table
+
+const notes =[
+    {
+        id: 3
+    },
+    {
+        id: 1
+    }, 
+    {
+        id: 2
+    },
+
+];
+
+const id = 2;
+
+
+
+
+const index = notes.indexOf(function(note){
+    return note.id === id;
+});
+notes.splice(index, 1);
+console.log("notes",notes);
