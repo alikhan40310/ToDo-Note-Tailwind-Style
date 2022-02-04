@@ -264,14 +264,19 @@ function deletes(id) {
     y.remove();
     // local storage delete data from array
     const infoData = JSON.parse(localStorage.getItem("userInfoData"));
-    let deleteItem = infoData.findIndex(function (value) {
-        console.log("value id",value.id);
-        console.log("simple id",id);
-        return value.id === id;
+    // let deleteItem = infoData.findIndex(function (value) {
+    //     console.log("value id",value.id);
+    //     console.log("simple id",id);
+    //     return value.id === id;
+    // });
+    
+    const index = infoData.indexOf(function(user){
+        return user.id === id;
     });
-    // infoData.splice(deleteItem, 1);
-    // localStorage.setItem("userInfoData", JSON.stringify(infoData));
-
+    infoData.splice(index, 1);
+    console.log("info data array in delete",infoData);
+    console.log("index of delete",index);
+    localStorage.setItem("userInfoData", JSON.stringify(infoData));
 }
 // global edit function
 function editvalue(id1, id2, id3, id4) {
@@ -304,7 +309,6 @@ function updateFunc() {
     document.getElementById(c).innerHTML = date;
     document.getElementById(d).style.backgroundColor = color;
     document.getElementById(d).style.backgroundImage = `linear-gradient(20deg,${color}, yellow)`;
-
     document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
      // dialog box remove attribute
@@ -426,7 +430,7 @@ function searchfunc() {
 }
 
 
-const notes =[
+const notes = [
     {
         id: 3
     },
@@ -440,10 +444,6 @@ const notes =[
 ];
 
 const id = 2;
-
-
-
-
 const index = notes.indexOf(function(note){
     return note.id === id;
 });
