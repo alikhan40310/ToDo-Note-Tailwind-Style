@@ -233,6 +233,13 @@ function submitFunc() {
 function deletes(id) {
     var y = document.getElementById(id);
     y.remove();
+    let infoData = JSON.parse(localStorage.getItem("userInfoData"));
+
+    let deleteItem = infoData.findIndex(function (value) {
+        return value.id === id;
+    });
+    infoData.splice(deleteItem, 1);
+    localStorage.setItem("userInfoData", JSON.stringify(infoData));
 }
 // global edit function
 function editvalue(id1, id2, id3, id4) {
@@ -266,6 +273,10 @@ function updateFunc() {
     document.getElementById(d).style.backgroundColor = color;
     document.getElementById("updatebtn").style.display = "none";
     document.getElementById("submitbtn").style.display = "inline-block";
+
+     // dialog box remove attribute
+     let x = document.getElementById("dialog");
+     x.removeAttribute('open', true);
 }
 // globally search function
 function searchfunc() {
@@ -378,6 +389,8 @@ function searchfunc() {
         // dialog box remove attribute
         let x = document.getElementById("dialog");
         x.removeAttribute('open', true);
-
     }
 }
+// create a program that delete stored array data from local storage
+
+// create a program that add two number
