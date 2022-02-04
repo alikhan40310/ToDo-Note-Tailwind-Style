@@ -216,7 +216,7 @@ function submitFunc() {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
     // pushing element in array as a object
-    let obj = { title: intitle, dec: indescription,col: incolor,date:indate };
+    let obj = { title: intitle, dec: indescription,col: incolor,date:indate, id:ranValue };
     array.push(obj);
     console.log(array);
 
@@ -229,12 +229,13 @@ function submitFunc() {
         
     }
 }
+// create a program to delete array item from local storage
 // delete global function
 function deletes(id) {
     var y = document.getElementById(id);
     y.remove();
+    // local storage delete data from array
     let infoData = JSON.parse(localStorage.getItem("userInfoData"));
-
     let deleteItem = infoData.findIndex(function (value) {
         return value.id === id;
     });
@@ -261,6 +262,7 @@ function editvalue(id1, id2, id3, id4) {
     document.getElementById("updatebtn").style.display = "block";
     document.getElementById("submitbtn").style.display = "none";
 }
+
 // globally update function
 function updateFunc() {
     let title = document.getElementById("inptitle").value;
@@ -390,7 +392,9 @@ function searchfunc() {
         let x = document.getElementById("dialog");
         x.removeAttribute('open', true);
     }
+
 }
 // create a program that delete stored array data from local storage
 
-// create a program that add two number
+// create program to update data in local storage
+// create a program to append data in table

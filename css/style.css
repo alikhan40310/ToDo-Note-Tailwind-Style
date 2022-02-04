@@ -66,3 +66,9 @@ dialog {
 	  box-shadow: 8px 4px 19px -10px #000;
   }
   /* allign all element in center */
+  /* create flex box */
+  .flex{
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+  }
