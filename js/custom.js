@@ -272,10 +272,8 @@ function deletes(id) {
     console.log(id);
     let deleteItem = infoData.findIndex(function (value) {
         return value.id === id;
-        console.log("delete id ",id);
 
     });
-    
     // let index = infoData.indexOf(function(user){
     //     return user.ranValue === id;
     // });
@@ -303,9 +301,6 @@ function editvalue(id1, id2, id3, id4) {
     d = id4;
     document.getElementById("updatebtn").style.display = "block";
     document.getElementById("submitbtn").style.display = "none";
-
-
-    
 }
 // globally update function
 function updateFunc() {
@@ -335,10 +330,6 @@ function updateFunc() {
     infoData[updateItem].date = date;
     infoData[updateItem].col = color;
     localStorage.setItem("userInfoData", JSON.stringify(infoData));
-
-
-    
-
 
 }
 // globally search function
@@ -454,8 +445,6 @@ function searchfunc() {
         x.removeAttribute('open', true);
     }
 }
-
-
 const notes = [
     {
         id: 3
