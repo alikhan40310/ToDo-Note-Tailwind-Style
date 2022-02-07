@@ -121,9 +121,9 @@ for(let i = 0; i<array.length; i++) {
     deletebtn.onclick = function () {
         deletes(id);
     };
-    edit functionality
+    // edit functionality
     editbtn.onclick = function () {
-        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
+        editvalue("titleId" + array[i], "desId" + array[i], "dateId" + array[i], array[i]);
     };
     // empty dialogbox on load
     document.getElementById("inptitle").value = "";
@@ -303,6 +303,9 @@ function editvalue(id1, id2, id3, id4) {
     d = id4;
     document.getElementById("updatebtn").style.display = "block";
     document.getElementById("submitbtn").style.display = "none";
+
+
+    
 }
 // globally update function
 function updateFunc() {
@@ -320,6 +323,23 @@ function updateFunc() {
      // dialog box remove attribute
      let x = document.getElementById("dialog");
      x.removeAttribute('open', true);
+
+    //  create a program that update the existing array data in local storage
+
+    let infoData = JSON.parse(localStorage.getItem("userInfoData"));
+    let updateItem = infoData.findIndex(function (value) {
+        return value.id === d;
+    });
+    infoData[updateItem].title = title;
+    infoData[updateItem].dec = description;
+    infoData[updateItem].date = date;
+    infoData[updateItem].col = color;
+    localStorage.setItem("userInfoData", JSON.stringify(infoData));
+
+
+    
+
+
 }
 // globally search function
 function searchfunc() {
