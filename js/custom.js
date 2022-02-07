@@ -1,8 +1,9 @@
 document.getElementById("updatebtn").style.display = "none";
+// form submit stop functionality
 function func(event) {
     event.preventDefault();
 }
-
+// validate form functionality
 function validateForm() {
     let title = document.getElementById("inptitle").value;
     let description = document.getElementById("description").value;
@@ -15,10 +16,12 @@ function validateForm() {
         submitFunc();
     }
 }
+// globaly open dialog box
 function handleDialog() {
     let x = document.getElementById("dialog");
     x.setAttribute('open', true);
 }
+// globally closed dialog box
 function closefun() {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
@@ -31,13 +34,15 @@ let d;
 // globally array
 let array = [];
 // globally get local storage
-debugger;
-const existingUserInfoData = JSON.parse(localStorage.getItem("userInfoData"));
+let existingUserInfoData = JSON.parse(localStorage.getItem("userInfoData"));
 if (existingUserInfoData !== null) {
     array = existingUserInfoData;
 }
 console.log("array", array);
+
 for(let i = 0; i<array.length; i++) {
+    let id = array[i].id;
+    console.log({id});
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
     let description = document.createElement("p");
@@ -68,12 +73,6 @@ for(let i = 0; i<array.length; i++) {
     date.innerHTML = array[i].date;
     apendsection.style.backgroundColor = array[i].col;
     apendsection.style.backgroundImage = `linear-gradient(20deg,${array[i].col}, yellow`;
-    // random ID generate
-    let ranValue = Math.random() * 100;
-    // assigning ID of different field
-    title.id = "titleId" + ranValue;
-    date.id = "dateId" + ranValue;
-    description.id = "desId" + ranValue;
     // styling on appendDiv
     apendsection.style.padding = "20px 20px";
     apendsection.style.borderRadius = "8px";
@@ -117,12 +116,12 @@ for(let i = 0; i<array.length; i++) {
     editbtn.style.color = "#fff";
     editbtn.style.textTransform = "capitalize";
     // delete item on click
-    apendsection.id = ranValue;
+    apendsection.setAttribute("id", id);
     // calling delete function on click
     deletebtn.onclick = function () {
-        deletes(ranValue);
+        deletes(id);
     };
-    // edit functionality
+    edit functionality
     editbtn.onclick = function () {
         editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
     };
@@ -134,8 +133,7 @@ for(let i = 0; i<array.length; i++) {
     let x = document.getElementById("dialog");
     x.removeAttribute('open', true);
 }
-
-    
+// global function for submit
 function submitFunc() {
     let apendsection = document.createElement("div");
     let title = document.createElement("p");
@@ -222,12 +220,18 @@ function submitFunc() {
     editbtn.style.color = "#fff";
     editbtn.style.textTransform = "capitalize";
     // delete item on click
-    apendsection.id = ranValue;
+    apendsection.id  = ranValue;
+
+    // pushing element in array as a object
+    let obj = { title: intitle, dec: indescription,col: incolor,date:indate, id:ranValue };
     // calling delete function on click
+
+    
     deletebtn.onclick = function () {
         deletes(ranValue);
-        console.log("in delete function ranvalue",ranValue)
+        console.log("in delete function ranvalue",ranValue);
     };
+
     // edit functionality
     editbtn.onclick = function () {
         editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, ranValue);
@@ -236,10 +240,6 @@ function submitFunc() {
     document.getElementById("inptitle").value = "";
     document.getElementById("description").value = "";
     document.getElementById("inpdate").value = "";
-   
-    // pushing element in array as a object
-    let obj = { title: intitle, dec: indescription,col: incolor,date:indate, id:ranValue };
-    
    // storing data in local storage
     let existingData = JSON.parse(localStorage.getItem("userInfoData"));
     console.log("existingData storage result", existingData);
@@ -260,23 +260,29 @@ function submitFunc() {
 // create a simple program that validate the form
 // delete global function
 function deletes(id) {
+
+    console.log(deletes);
     var y = document.getElementById(id);
-    y.remove();
-    // local storage delete data from array
-    const infoData = JSON.parse(localStorage.getItem("userInfoData"));
-    // let deleteItem = infoData.findIndex(function (value) {
-    //     console.log("value id",value.id);
-    //     console.log("simple id",id);
-    //     return value.id === id;
-    // });
+    console.log(y);
+
     
-    const index = infoData.indexOf(function(user){
-        return user.id === id;
+    // local storage delete data from array
+    let infoData = JSON.parse(localStorage.getItem("userInfoData"));
+
+    console.log(id);
+    let deleteItem = infoData.findIndex(function (value) {
+        return value.id === id;
+        console.log("delete id ",id);
+
     });
-    infoData.splice(index, 1);
-    console.log("info data array in delete",infoData);
-    console.log("index of delete",index);
+    
+    // let index = infoData.indexOf(function(user){
+    //     return user.ranValue === id;
+    // });
+    infoData.splice(deleteItem, 1);
+    array.splice(deleteItem, 1);    
     localStorage.setItem("userInfoData", JSON.stringify(infoData));
+    y.remove();
 }
 // global edit function
 function editvalue(id1, id2, id3, id4) {
