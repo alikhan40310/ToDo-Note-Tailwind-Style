@@ -41,6 +41,8 @@ if (existingUserInfoData !== null) {
 console.log("array", array);
 
 for(let i = 0; i<array.length; i++) {
+
+    let ranValue = Math.random() * 100;
     let id = array[i].id;
     console.log({id});
     let apendsection = document.createElement("div");
@@ -98,6 +100,12 @@ for(let i = 0; i<array.length; i++) {
     buttonDiv.appendChild(deletebtn);
     buttonDiv.appendChild(editbtn);
     apendsection.appendChild(buttonDiv);
+
+    // giving ids to array
+    title.id = "titleId" + ranValue;
+    date.id = "dateId" + ranValue;
+    description.id = "desId" + ranValue;
+    
     // creating classes for custom styling external
     deletebtn.className = "deletestyle";
     editbtn.className = "editstyle";
@@ -123,7 +131,7 @@ for(let i = 0; i<array.length; i++) {
     };
     // edit functionality
     editbtn.onclick = function () {
-        editvalue("titleId" + array[i], "desId" + array[i], "dateId" + array[i], array[i]);
+        editvalue("titleId" + ranValue, "desId" + ranValue, "dateId" + ranValue, id);
     };
     // empty dialogbox on load
     document.getElementById("inptitle").value = "";
@@ -321,15 +329,15 @@ function updateFunc() {
 
     //  create a program that update the existing array data in local storage
 
-    let infoData = JSON.parse(localStorage.getItem("userInfoData"));
-    let updateItem = infoData.findIndex(function (value) {
-        return value.id === d;
-    });
-    infoData[updateItem].title = title;
-    infoData[updateItem].dec = description;
-    infoData[updateItem].date = date;
-    infoData[updateItem].col = color;
-    localStorage.setItem("userInfoData", JSON.stringify(infoData));
+    // let infoData = JSON.parse(localStorage.getItem("userInfoData"));
+    // let updateItem = infoData.findIndex(function (value) {
+    //     return value.id === d;
+    // });
+    // infoData[updateItem].title = title;
+    // infoData[updateItem].dec = description;
+    // infoData[updateItem].date = date;
+    // infoData[updateItem].col = color;
+    // localStorage.setItem("userInfoData", JSON.stringify(infoData));
 
 }
 // globally search function
